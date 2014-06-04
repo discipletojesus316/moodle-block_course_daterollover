@@ -38,10 +38,7 @@ $coursecontext = $context->get_course_context();
 $courseid=$coursecontext->instanceid;
 
         if (has_capability('block/course_daterollover:changedate', $coursecontext)) {
-           /* if (isset($SESSION->assignment_daterollover['errors'])) {
-                $this->display_errors($SESSION->assignment_daterollover['errors']);
-            }
-            */
+
 
            $url = new moodle_url('/blocks/course_daterollover/edit.php');
             $customdata = array('coursecontext' => $coursecontext);
