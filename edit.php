@@ -1,5 +1,5 @@
 <?php
-       // This file is part of Moodle - http://moodle.org/
+ // This file is part of Moodle - http://moodle.org/
     //
     // Moodle is free software: you can redistribute it and/or modify
     // it under the terms of the GNU General Public License as published by
@@ -66,6 +66,9 @@ $form = new course_daterollover_form(null, array('coursecontext' => $courseconte
 if ($data = $form->get_data()) {
 
 
+$sql2=$DB->get_fieldset_select('course','startdate','id=?',array($courseid));
+
+
 
 
 
@@ -82,7 +85,7 @@ $assignments = $DB->get_records('assign', array('course'=>$courseid));
 		$record->duedate = ($assignment->duedate )+($data->date) - ($sql2[0]);
 		
 		$record->allowsubmissionsfromdate = ($assignment->allowsubmissionsfromdate )+($data->date) - ($sql2[0]);
-		$record->cutoff = ($assignment->cutoff )+($data->date) - ($sql2[0]);
+		$record->cutoffdate = ($assignment->cutoffdate )+($data->date) - ($sql2[0]);
 		$record->timemodified = $currentime;
                 $DB->update_record('assign', $record);
 
@@ -101,7 +104,7 @@ $upcomingevents = $DB->get_records('event', array('courseid'=>$courseid));
  		
                        
                
- 		 $eventrecord->timestart =($assignment->timestart)+($data->date) - ($sql2[0]);
+ 		 $eventrecord->timestart =($upcomingevent->timestart)+($data->date) - ($sql2[0]);
                  $eventrecord->timemodified =  $currentime ;
                  $DB->update_record('event', $eventrecord);
 }
@@ -115,8 +118,6 @@ $courserecord->id = $a->id;
 $courserecord->startdate = $data->date;
 $DB->update_record('course', $courserecord);
 }
-
-
 
 
 
