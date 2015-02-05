@@ -42,3 +42,4 @@ $plugin->requires = 2011120500;
 //This plugin component, the name of it.
 $plugin->component = 'block_course_daterollover';
 
+?>
