@@ -31,7 +31,11 @@
      */
 
 //If MOODLE_INTERNAL is not defined, then die(), which means terminating the program.
-defined('MOODLE_INTERNAL') || die();
+//Code copied from /moodle-block_assignment_daterollover/blob/master/assignment_daterollover_form.php
+if (!defined('MOODLE_INTERNAL'))
+{
+    die();
+}
 
 //The version that this plugin is written for.
 $plugin->version = 2014050100;
