@@ -30,7 +30,12 @@
      * @subpackage  course_daterollover
      */
 
-defined('MOODLE_INTERNAL') || die();
+//If MOODLE_INTERNAL is not defined, then die(), which means terminating the program.
+//Code copied from /moodle-block_assignment_daterollover/blob/master/assignment_daterollover_form.php
+if (!defined('MOODLE_INTERNAL'))
+{
+    die();
+}
 
 require_once($CFG->dirroot.'/blocks/course_daterollover/course_daterollover_form.php');
 
