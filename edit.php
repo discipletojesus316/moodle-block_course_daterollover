@@ -131,3 +131,4 @@ redirect($CFG->wwwroot.'/course/view.php?id='.$courseid, '', 0);
 }
 redirect($CFG->wwwroot.'/course/view.php?id='.$courseid, '', 0);
 
+?>
