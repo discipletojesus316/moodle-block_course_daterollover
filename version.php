@@ -17,19 +17,28 @@
     /**
      *  block_course_daterollover
      *
-     *  This plugin adjust assignment date according to the course start date , it will set forward assignment items  by x number of days, which includes allowsubmissionfrom,
+     *  This plugin adjust assignment date according to the course start date, 
+     *  it will set forward assignment items  by x number of days, which includes allowsubmissionfrom,
      *  due-date, cutoffdate, upcoming events, in a course through one centralized screen  
-     *  rather than having to go into each individual assignment activity. This is a fork of Tsedey's original work.
+     *  rather than having to go into each individual assignment activity. 
+     *  This started as a fork off of TsedeyT's original work.
      *
-     * @author      J. Anton Thelander <thelander7@outlook.com>
+     * @creator     Tsedey Terefe <snort.test123@gmail.com>
+     * @forker      J. Anton Thelander <thelander7@outlook.com>
      * @license     GNU General Public License version 3
      * @package     block
      * @subpackage  course_daterollover
      */
 
+//If MOODLE_INTERNAL is not defined, then die(), which means terminating the program.
 defined('MOODLE_INTERNAL') || die();
 
+//The version that this plugin is written for.
 $plugin->version = 2014050100;
+
+//The version that this plugin demands at least.
 $plugin->requires = 2011120500;
+
+//This plugin component, the name of it.
 $plugin->component = 'block_course_daterollover';
 
