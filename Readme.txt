@@ -1,12 +1,17 @@
-course_daterollover block for moodle
+course_daterollover block for Moodle
 
-To install this block, 
+Guide for installing course_daterollover
 
-1. unzip the directory course_daterollover
-2. put the unziped course_daterollover directory into moodle/blocks/ and check  admin/index.php 
+1. Unzip the directory course_daterollover.
 
-2. go to the course page you want to adjust and turn editing on which is located in the top right corner, you must have administrative privilage to do this.
+2. Put the unzipped course_daterollover directory into %YourServerDirectory%/moodle/blocks/ and check  admin/index.php 
 
-3. go to add the block , from the drop down menu, you will see course Date Rollover.
+2. Go to the course page you want to adjust and click the button named "Turn editing on" which is located in the top right corner.
+Administrative privilages may be needed to do this. After clicking that button the button should read "Turn editing off".
 
-4. select the date that you want the course to be started, by doing so you you will set it forward by certain days which will inturn will set forward the assignments that belong to the current course automatically, so no need to go to adjust individual assignment start dates. 
+3. Go to the "Add a block"-block, probably in the bottom left of the browser window.
+
+4. Click "Add..." beneath "Add a block" from the drop down menu, and select "Course Date Rollover".
+
+5. Select the date that the course wants to be started, that will set it forward by certain days which in turn will
+set forward the assignments that belong to the current course automatically. 
