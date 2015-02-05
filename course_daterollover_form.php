@@ -30,14 +30,21 @@
      * @package     block
      * @subpackage  course_daterollover
      */
-if (!defined('MOODLE_INTERNAL')) {
+
+//If MOODLE_INTERNAL is not defined, then die(), which means terminating the program.
+//Code copied from /moodle-block_assignment_daterollover/blob/master/assignment_daterollover_form.php
+if (!defined('MOODLE_INTERNAL'))
+{
     die();
 }
+
 require_once($CFG->libdir.'/formslib.php');
 global $course;
-class course_daterollover_form extends moodleform {
+class course_daterollover_form extends moodleform
+{
 
-    public function definition() {
+    public function definition()
+    {
 
         $mform =& $this->_form;
         $coursecontext = $this->_customdata['coursecontext'];
@@ -51,7 +58,8 @@ class course_daterollover_form extends moodleform {
 
 
 
-        $years= array(
+        $years= array
+        (
         'startyear' => 1970, 
         'stopyear'  => 2030,
         'timezone'  => 99,
@@ -67,18 +75,24 @@ class course_daterollover_form extends moodleform {
 
     }
 
-    public function validate($data) {
-        if (empty($data['date']) || $data['date'] == -1) {
+    public function validate($data)
+    {
+        if (empty($data['date']) || $data['date'] == -1)
+        {
             $errors['date'] = get_string('invaliddate', 'block_course_daterollover');
-        } else if ($data['date'] < time()) {
+        }
+        else if ($data['date'] < time())
+        {
             $errors['date'] = get_string('pastdate', 'block_course_daterollover');
         }
         return $errors;
     }
 
-    public function display() {
+    public function display()
+    {
        
-        if (!$this->_definition_finalized) {
+        if (!$this->_definition_finalized)
+        {
             $this->_definition_finalized = true;
             $this->definition_after_data();
         }
