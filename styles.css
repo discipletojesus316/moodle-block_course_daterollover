@@ -1,44 +1,43 @@
 
 .block_course_daterollover .mform fieldset > div 
 {
-    margin: .1em 0em;
+	margin:.1em 0em;
 }
 
 .block_course_daterollover .mform .fitem .fitemtitle
 {
-    text-align: left;    
-    width: 55%;
+	text-align:left;
+	width:55%;
 }
 
 .block_course_daterollover .mform .label
 {
-    float: left;    
-    margin:0 0 0 0;
-   display :block;
-    text-align:right;
-    
+	float:left;    
+	margin:0 0 0 0;
+	display:block;
+	text-align:right;
 }
 
 .block_course_daterollover .mform .fitem.required .felement,
 .block_course_daterollover .mform .fitem .felement.fsubmit,
 .block_course_daterollover .mform .fitem.required .fitemtitle
 {
-    text-align: left;
-    width: 100%;
-    margin-left: 0px;
+	text-align:left;
+	width:100%;
+	margin-left:0px;
 }
 
 .block_course_daterollover .fdescription.required
 {
-    display: none;
+	display:none;
 }
 
 .block_course_daterollover fieldset > select + label + select
 {
-    width: 4em;
+	width:4em;
 }
 
 .block_course_daterollover fieldset > select + label + select + label + select
 {
-    width: auto;
+	width:auto;
 }
