@@ -22,7 +22,7 @@
 	
 	Plug-in description:
 	
-	The plugin adjust assignment dates according to the course start date, 
+	The plug-in adjust assignment dates according to the course start date, 
 	it will set forward assignment items by x number of days, which includes allowsubmissionfrom,
 	due-date, cutoffdate, upcoming events, in a course through one centralized screen  
 	rather than having to go into each individual assignment activity. 
@@ -31,7 +31,7 @@
 	@creator					Tsedey Terefe <snort.test123@gmail.com>
 	@forker					J. Anton Thelander <thelander7@outlook.com>
 	@license					GNU General Public License version 3
-	@package				block
+	@package					block
 	@subpackage			course_daterollover
 */
 
@@ -46,6 +46,7 @@ require_once($CFG->libdir.'/filelib.php');
 require_once($CFG->dirroot.'/blocks/course_daterollover/course_daterollover_form.php');
 
 require_login($SITE);
+
 $courseid=required_param('id',PARAM_INT);
 
 $sql3=$DB->get_fieldset_select('assign','course','course=?',array($courseid));
@@ -61,63 +62,122 @@ $sql3=$DB->get_fieldset_select('assign','course','course=?',array($courseid));
 	
 	block_load_class('course_daterollover');
 	
-	$block = new block_course_daterollover();
-	$form = new course_daterollover_form(null, array('coursecontext' => $coursecontext));
+	$block=new block_course_daterollover();
+	$form=new course_daterollover_form
+	(
+		null,
+		array('coursecontext'=>$coursecontext)
+	);
 	
-	if ($data = $form->get_data())
+	if ($data=$form->get_data())
 	{
-		$sql2=$DB->get_fieldset_select('course','startdate','id=?',array($courseid));
+		$sql2=$DB->get_fieldset_select
+		(
+			'course',
+			'startdate',
+			'id=?',
+			array($courseid)
+		);
 		
-		$assignments = $DB->get_records('assign', array('course'=>$courseid));
+		$assignments=$DB->get_records
+		(
+			'assign',
+			array('course'=>$courseid)
+		);
 		
 		foreach($assignments as $assignment)
 		{            
-			$record = new stdClass();
-			$record->id = $assignment->id;
+			$record=new stdClass();
 			
-			$currentime =time();
+			$record->id=$assignment->id;
 			
-			$tiral3 =(($data->date) - ($sql2[0]));
+			$currentime=time();
 			
-			$record->duedate = ($assignment->duedate )+($data->date) - ($sql2[0]);
+			$tiral3=(($data->date)-($sql2[0]));
 			
-			$record->allowsubmissionsfromdate = ($assignment->allowsubmissionsfromdate )+($data->date) - ($sql2[0]);
-			$record->cutoffdate = ($assignment->cutoffdate )+($data->date) - ($sql2[0]);
-			$record->timemodified = $currentime;
+			$record->duedate=
+			(
+				($assignment->duedate)+
+				($data->date)-
+				($sql2[0])
+			);
 			
-			$DB->update_record('assign', $record);
+			$record->allowsubmissionsfromdate=
+			(
+				($assignment->allowsubmissionsfromdate)+
+				($data->date)-
+				($sql2[0])
+			);
+			
+			$record->cutoffdate=
+			(
+				($assignment->cutoffdate)+
+				($data->date)-
+				($sql2[0])
+			);
+			
+			$record->timemodified=$currentime;
+			
+			$DB->update_record
+			(
+				'assign',
+				$record
+			);
 		}
 		
 		
-		$upcomingevents = $DB->get_records('event', array('courseid'=>$courseid));
+		$upcomingevents=$DB->get_records
+		(
+			'event',
+			array('courseid'=>$courseid)
+		);
 		   
 		foreach($upcomingevents as $upcomingevent)
 		{
-			$eventrecord = new stdClass();
+			$eventrecord=new stdClass();
 			
-			$eventrecord->id = $upcomingevent->id;
+			$eventrecord->id=$upcomingevent->id;
 			
-			$currentime =time();
+			$currentime=time();
 			
-	 		$eventrecord->timestart =($upcomingevent->timestart)+($data->date) - ($sql2[0]);
+	 		$eventrecord->timestart=
+			(
+				($upcomingevent->timestart)+
+				($data->date)-($sql2[0])
+			);
 			
-			$eventrecord->timemodified =  $currentime ;
-			$DB->update_record('event', $eventrecord);
+			$eventrecord->timemodified=$currentime ;
+			$DB->update_record
+			(
+				'event',
+				$eventrecord
+			);
 		}
 		
+		$as=$DB->get_records
+		(
+			'course',
+			array('id'=>$courseid)
+		);
 		
-		$as = $DB->get_records('course', array('id'=>$courseid));
 		foreach ($as as  $a )
 		{
-			$courserecord = new stdClass();
-			$courserecord->id = $a->id;
-			$courserecord->startdate = $data->date;
-			$DB->update_record('course', $courserecord);
+			$courserecord=new stdClass();
+			$courserecord->id=$a->id;
+			$courserecord->startdate=$data->date;
+			$DB->update_record
+			(
+				'course',
+				$courserecord
+			);
 		}
 	}
 }
 
-//Go to the current course's homepage.
-redirect($CFG->wwwroot.'/course/view.php?id='.$courseid, '', 0);
+//Go to the current course's homepage, maybe change back to this page.
+//redirect($CFG->wwwroot.'/course/view.php?id='.$courseid, '', 0);
+
+//Redirect to the current course's calendar view.
+redirect($CFG->wwwroot.'/calendar/view.php?view=upcoming&course='.$courseid, '', 0);
 
 ?>

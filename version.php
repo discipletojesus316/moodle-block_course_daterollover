@@ -22,7 +22,7 @@
 	
 	Plug-in description:
 	
-	The plugin adjust assignment dates according to the course start date, 
+	The plug-in adjust assignment dates according to the course start date, 
 	it will set forward assignment items by x number of days, which includes allowsubmissionfrom,
 	due-date, cutoffdate, upcoming events, in a course through one centralized screen  
 	rather than having to go into each individual assignment activity. 
@@ -31,7 +31,7 @@
 	@creator					Tsedey Terefe <snort.test123@gmail.com>
 	@forker					J. Anton Thelander <thelander7@outlook.com>
 	@license					GNU General Public License version 3
-	@package				block
+	@package					block
 	@subpackage			course_daterollover
 */
 
@@ -48,10 +48,12 @@ YYYYMMDDVV=2014050300, the year 2014 AD, May, the third, version 00.
 YYYY=years after Christ, MM=months, DD=days, VV=version.
 */
 
-//The version that this plugin is written for.
-$plugin->version=2014050305;
+//The version of Moodle that this plugin is tested and written for.
+//Upgrade to the current version of Moodle and maybe test the latest version and rewrite this date
+//before sending in.
+$plugin->version=2014050309;
 
-//The version that this plugin demands at least.
+//The version of Moodle that this plugin demands at least.
 $plugin->requires=2011120500;
 
 //This plugin component, the name of it.
